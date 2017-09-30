@@ -1,0 +1,6 @@
+[
+  {
+    "name": "member",
+    "pages": [{ "name": "member list", "href": "/member" }]
+  }
+]

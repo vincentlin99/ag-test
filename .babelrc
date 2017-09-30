@@ -1,0 +1,14 @@
+{
+  "compact": true,
+  "presets": [
+    ["es2015", { "modules": false }],
+    "stage-2",
+    "stage-3",
+    "es2017-node7",
+    "react"
+  ],
+  "sourceMaps": true,
+  "retainLines": true,
+  "plugins": ["react-hot-loader/babel", "transform-runtime"],
+  "ignore": []
+}
