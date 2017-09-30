@@ -38,5 +38,5 @@ docker-compose up -d
 ```
  - Start api server
 ```
-node server.js
+node dist/server.js
 ```
