@@ -1,0 +1,10 @@
+version: '2'
+services:
+  agtestapi:
+    build: .
+    image: vincent/ag-test-api:latest
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"
+    restart: always

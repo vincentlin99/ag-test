@@ -1,0 +1,11 @@
+version: '3'
+services:
+  agtestclient:
+    build: .
+    image: vincent/ag-test-client:latest
+    volumes:
+      - ./log/nginx:/var/log/nginx
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "80:80"
+    restart: always
