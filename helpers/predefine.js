@@ -3,8 +3,8 @@ const Promise = require("bluebird");
 
 const ACCOUNTS = [
   {
-    name: "admin",
-    pwd: "admin"
+    account: "admin",
+    password: "admin"
   }
 ];
 

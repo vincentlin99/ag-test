@@ -11,7 +11,7 @@ const AccountSchema = new Schema({
     type: String,
     require: true
   },
-  pwd: {
+  password: {
     // 密碼
     type: String,
     require: true
@@ -30,20 +30,20 @@ const AccountSchema = new Schema({
   }
 });
 
-AccountSchema.statics.login = function login(name, pwd) {
+AccountSchema.statics.login = function login(account, password) {
   return new Promise((resolve, reject) => {
-    this.findOne({ name }, (err, AccountDoc) => {
+    this.findOne({ account }, (err, AccountDoc) => {
       if (AccountDoc === null) {
         return reject("Account not found");
       }
 
-      auth.hashPassword(pwd, AccountDoc.salt).then(hashedPassword => {
-        if (AccountDoc.pwd !== hashedPassword) {
+      auth.hashPassword(password, AccountDoc.salt).then(hashedPassword => {
+        if (AccountDoc.password !== hashedPassword) {
           return reject("Wrong password");
         }
-        const { name } = AccountDoc;
+        const { account } = AccountDoc;
         const expiresIn = 6;
-        const token = auth.generateAccessToken({ name }, expiresIn);
+        const token = auth.generateAccessToken({ account }, expiresIn);
         return resolve({ token });
       });
     });
@@ -55,8 +55,8 @@ module.exports = () => {
     const user = this;
     user.createdAt = moment().format("YYYY/MM/DD HH:mm:ss");
     user.salt = auth.generateSalt();
-    auth.hashPassword(user.pwd, user.salt).then(hashedPassword => {
-      user.pwd = hashedPassword;
+    auth.hashPassword(user.password, user.salt).then(hashedPassword => {
+      user.password = hashedPassword;
       next();
     });
   });
